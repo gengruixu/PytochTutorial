@@ -1,0 +1,1044 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass{ctexart}
+\usepackage{authblk}
+\usepackage{indentfirst}
+\author[]{RX. Geng}
+\affil[]{School of Information and  Communication Engineering, University of Electronic Science and Technology of China}
+% 目录应在base.tplx中添加
+% \tableofcontents
+% \documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{PyTorch Tutorial}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+     
+%    \maketitle
+%    
+     
+    
+    % 首页
+    \newpage
+	{
+    \centering
+	{\scshape\LARGE Made by Jupyter Notebook \par}
+	\vspace{1cm}
+	{\scshape\Large Some Notes\par}
+	\vspace{1.5cm}
+    %************************ 输入文章题目 *****************************************
+	{\huge\bfseries PyTorch Tutorial\par}
+	\vspace{2cm}
+	{\Large\itshape Ruixu Geng\par}
+	\Large\itshape	github.com/gengruixu
+	\vfill
+	From:\par
+	Pytorch Tutorial \textsc{pytorch.org/tutorials/}
+	\vfill
+	{\large \today\par}
+    }
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+%    \newenvironment{Shaded}{}{}
+
+
+    % 开始目录
+    \newpage
+    \tableofcontents
+    % 开始正文
+    \newpage
+    
+    \section{Getting Started}\label{getting-started}
+
+    \subsection{Deep Learning with Pytorch: A 60 Minute
+Blitz}\label{deep-learning-with-pytorch-a-60-minute-blitz}
+
+blitz: 闪电战
+
+Our Goal in this part:
+
+\begin{itemize}
+\tightlist
+\item
+  Understand Pytorch's Tensor library and neural networks at a high
+  level
+\item
+  Train a small neural network to classify images
+\end{itemize}
+
+    \subsubsection{What's is Pytorch?}\label{whats-is-pytorch}
+
+It is a Python-based scientific computing package targeted at two sets
+of audiences:
+
+\begin{itemize}
+\tightlist
+\item
+  A replcement for Numpy to use the power of GPU
+\item
+  A deep learning search platform that provides maximum flexibility and
+  speed
+\end{itemize}
+
+    \paragraph{Getting started}\label{getting-started}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Tensors
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  similar as Numpy's ndarrats
+\item
+  But Tensors can also be used on a GPU to accelerate computing.
+\end{itemize}
+
+\emph{Let's take some example now}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{c+c1}{\PYZsh{} from \PYZus{}\PYZus{}future\PYZus{}\PYZus{} import print\PYZus{}fuction}
+        \PY{c+c1}{\PYZsh{} 适用于从Python2中引入print函数，即便是Python2，Print也可以加()}
+        \PY{k+kn}{import} \PY{n+nn}{torch}
+        \PY{k+kn}{from} \PY{n+nn}{IPython}\PY{n+nn}{.}\PY{n+nn}{display} \PY{k}{import} \PY{n}{Latex}
+        \PY{c+c1}{\PYZsh{} Construct a 5x3 matrix, uninitialized:}
+        \PY{n}{x\PYZus{}empty} \PY{o}{=} \PY{n}{torch}\PY{o}{.}\PY{n}{empty}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x\PYZus{}empty=}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{x\PYZus{}empty}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Construct a randomly initialized matrix:}
+        \PY{n}{x\PYZus{}rand} \PY{o}{=} \PY{n}{torch}\PY{o}{.}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x\PYZus{}rand=}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{x\PYZus{}rand}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Construct a matrix filled zeros and of dtype long:}
+        \PY{n}{x\PYZus{}LongZeros} \PY{o}{=} \PY{n}{torch}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{n}{dtype} \PY{o}{=} \PY{n}{torch}\PY{o}{.}\PY{n}{double}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x\PYZus{}LongZeros=}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{x\PYZus{}LongZeros}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Construct a tensor directly from special data:}
+        \PY{n}{x\PYZus{}data} \PY{o}{=} \PY{n}{torch}\PY{o}{.}\PY{n}{tensor}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{2018}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{,}\PY{l+m+mi}{22}\PY{p}{]}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x\PYZus{}data=}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{x\PYZus{}data}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Construct a tensor based on an existing tensor}
+        \PY{c+c1}{\PYZsh{} change Value, Size and dType}
+        \PY{n}{x\PYZus{}newVST} \PY{o}{=} \PY{n}{x\PYZus{}data}\PY{o}{.}\PY{n}{new\PYZus{}ones}\PY{p}{(}\PY{l+m+mi}{9}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{,} \PY{n}{dtype}\PY{o}{=} \PY{n}{torch}\PY{o}{.}\PY{n}{double}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{x\PYZus{}newVST}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} just change Value and dType}
+        \PY{n}{x\PYZus{}newVS} \PY{o}{=} \PY{n}{torch}\PY{o}{.}\PY{n}{randn\PYZus{}like}\PY{p}{(}\PY{n}{x\PYZus{}data}\PY{p}{,} \PY{n}{dtype}\PY{o}{=} \PY{n}{torch}\PY{o}{.}\PY{n}{double}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{x\PYZus{}newVS}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} print Size( Shape)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{x\PYZus{}newVST}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{x\PYZus{}newVST}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Successful}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+x\_empty= tensor([[0.0000, 0.0000, 0.0000],
+        [0.0000, 0.0000, 0.0000],
+        [0.0000, 0.0000, 0.0000],
+        [0.0000, 0.0000, 0.0000],
+        [0.0000, 0.0000, 0.0000]])
+x\_rand= tensor([[0.2634, 0.2545, 0.6092],
+        [0.7748, 0.0908, 0.8941],
+        [0.3047, 0.6577, 0.6483],
+        [0.7937, 0.7073, 0.2769],
+        [0.3876, 0.6029, 0.7799]])
+x\_LongZeros= tensor([[0., 0., 0.],
+        [0., 0., 0.],
+        [0., 0., 0.],
+        [0., 0., 0.],
+        [0., 0., 0.]], dtype=torch.float64)
+x\_data= tensor([2018,    9,   22])
+tensor([[1., 1., 1., 1., 1., 1., 1., 1., 1.],
+        [1., 1., 1., 1., 1., 1., 1., 1., 1.],
+        [1., 1., 1., 1., 1., 1., 1., 1., 1.],
+        [1., 1., 1., 1., 1., 1., 1., 1., 1.],
+        [1., 1., 1., 1., 1., 1., 1., 1., 1.],
+        [1., 1., 1., 1., 1., 1., 1., 1., 1.],
+        [1., 1., 1., 1., 1., 1., 1., 1., 1.],
+        [1., 1., 1., 1., 1., 1., 1., 1., 1.],
+        [1., 1., 1., 1., 1., 1., 1., 1., 1.]], dtype=torch.float64)
+tensor([-0.6584,  1.3335, -0.9023], dtype=torch.float64)
+torch.Size([9, 9])
+torch.Size([9, 9])
+Successful
+
+    \end{Verbatim}
+
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Operations There are multiple syntaxes for operations. In the
+  following exampl, we will take a look at the add operation.
+\end{enumerate}
+
+    \(\color{red}{ADD\; Operation}\)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c+c1}{\PYZsh{} addition}
+        \PY{n}{a} \PY{o}{=} \PY{n}{torch}\PY{o}{.}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}
+        \PY{n}{b} \PY{o}{=} \PY{n}{torch}\PY{o}{.}\PY{n}{rand\PYZus{}like}\PY{p}{(}\PY{n}{a}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{a=}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{a}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b=}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{b}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} syntax 1 }
+        \PY{n}{c} \PY{o}{=} \PY{n}{a} \PY{o}{+} \PY{n}{b}\PY{p}{;}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{c=}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{c}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} syntax 2}
+        \PY{n}{c1} \PY{o}{=} \PY{n}{torch}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{n}{b}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{c=}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{c1}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} syntax 3: providing an output tensor as argument}
+        \PY{n}{c2} \PY{o}{=} \PY{n}{torch}\PY{o}{.}\PY{n}{rand\PYZus{}like}\PY{p}{(}\PY{n}{a}\PY{p}{)}
+        \PY{n}{torch}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{a}\PY{p}{,} \PY{n}{b}\PY{p}{,} \PY{n}{out} \PY{o}{=} \PY{n}{c2}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{c=}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{c2}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} syntax 4: add a to b}
+        \PY{n}{b}\PY{o}{.}\PY{n}{add\PYZus{}}\PY{p}{(}\PY{n}{a}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{add=}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{b}\PY{p}{)}
+        
+        \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{l+s+sd}{NOTE: Any operation that mutates(改变) a tensor in\PYZhy{}place(就地操作) is post\PYZhy{}fixed with an \PYZus{}. }
+        \PY{l+s+sd}{For example: x.copy\PYZus{}(y), x.t\PYZus{}(), will change x.}
+        \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        
+        \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{l+s+sd}{You can use standard NumPy\PYZhy{}like indexing with all bells and whistles! }
+        \PY{l+s+sd}{(你可以像使用Numpy库中索引的习惯一样在pytorch中索引)}
+        \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{c[:,0]=}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{c}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{c[:,1]=}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{c}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{c[:,2]=}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{c}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+a= tensor([[0.8121, 0.1098, 0.2129],
+        [0.4936, 0.7722, 0.4620],
+        [0.1978, 0.7144, 0.7590],
+        [0.2558, 0.8495, 0.5203],
+        [0.5908, 0.9509, 0.6481]])
+b= tensor([[0.4574, 0.5889, 0.1933],
+        [0.8983, 0.3399, 0.9876],
+        [0.8989, 0.1065, 0.3730],
+        [0.7859, 0.7841, 0.0518],
+        [0.8448, 0.1018, 0.4269]])
+c= tensor([[1.2695, 0.6987, 0.4062],
+        [1.3919, 1.1121, 1.4497],
+        [1.0967, 0.8209, 1.1320],
+        [1.0417, 1.6336, 0.5721],
+        [1.4356, 1.0527, 1.0750]])
+c= tensor([[1.2695, 0.6987, 0.4062],
+        [1.3919, 1.1121, 1.4497],
+        [1.0967, 0.8209, 1.1320],
+        [1.0417, 1.6336, 0.5721],
+        [1.4356, 1.0527, 1.0750]])
+c= tensor([[1.2695, 0.6987, 0.4062],
+        [1.3919, 1.1121, 1.4497],
+        [1.0967, 0.8209, 1.1320],
+        [1.0417, 1.6336, 0.5721],
+        [1.4356, 1.0527, 1.0750]])
+add= tensor([[1.2695, 0.6987, 0.4062],
+        [1.3919, 1.1121, 1.4497],
+        [1.0967, 0.8209, 1.1320],
+        [1.0417, 1.6336, 0.5721],
+        [1.4356, 1.0527, 1.0750]])
+c[:,0]= tensor([1.2695, 1.3919, 1.0967, 1.0417, 1.4356])
+c[:,1]= tensor([0.6987, 1.1121, 0.8209, 1.6336, 1.0527])
+c[:,2]= tensor([0.4062, 1.4497, 1.1320, 0.5721, 1.0750])
+
+    \end{Verbatim}
+
+    \(\color{red}{Resizing}\)
+
+If you want to resize/reshape tensor, you can use torch.view:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{x} \PY{o}{=} \PY{n}{torch}\PY{o}{.}\PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}
+        \PY{n}{y} \PY{o}{=} \PY{n}{x}\PY{o}{.}\PY{n}{view}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x=}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{x}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x size=}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{x}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y size=}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{y}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+        
+        \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{l+s+sd}{(Only) one element tensors can be converted to Python scalars by .item()}
+        \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{n}{x} \PY{o}{=} \PY{n}{torch}\PY{o}{.}\PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{x}\PY{o}{.}\PY{n}{type}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{x}\PY{o}{.}\PY{n}{item}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n+nb}{type}\PY{p}{(}\PY{n}{x}\PY{o}{.}\PY{n}{item}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+x= tensor([[ 0.5465, -1.6677,  1.0034, -0.0125],
+        [ 0.7528,  0.5030,  1.2933,  0.5500],
+        [ 1.9160, -2.4091,  0.0134,  0.8555],
+        [ 1.7463,  0.8464,  1.2658, -0.9102]])
+x size= torch.Size([4, 4])
+y size= torch.Size([2, 8])
+tensor([1.2587]) <built-in method type of Tensor object at 0x000002511A5EFA68>
+1.2586830854415894 <class 'float'>
+
+    \end{Verbatim}
+
+    More Operation can be found in http://pytorch.org/docs/torch
+
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Numpy Bridge
+\end{enumerate}
+
+\(\textbf{Converting Torch Tensor to Numpy Array}\)
+
+Converting a Torch Tensor to a Numpy array and vice versa is a breeze.
+(注: vice versa 反之亦然; breeze: 轻而易举的事情)
+
+The torch Tensor and Numpy array will share their underlying memory
+locations, and
+\({\color{red}{changing\;one\;will\;change\;the\;other}}\)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{a} \PY{o}{=} \PY{n}{torch}\PY{o}{.}\PY{n}{ones}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{a=}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{a}\PY{p}{)}
+        
+        \PY{n}{b} \PY{o}{=} \PY{n}{a}\PY{o}{.}\PY{n}{numpy}\PY{p}{(}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b=}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{b}\PY{p}{)}
+        
+        \PY{n}{a}\PY{o}{.}\PY{n}{add\PYZus{}}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{a=}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{a}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b=}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{b}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+a= tensor([1., 1., 1., 1., 1.])
+b= [1. 1. 1. 1. 1.]
+a= tensor([2., 2., 2., 2., 2.])
+b= [2. 2. 2. 2. 2.]
+
+    \end{Verbatim}
+
+    \(\textbf{Converting Numpy Array to Torch Tensor}\)
+
+See how changing the np array changed the Torch Tensor automatically
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{n}{a} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{ones}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}
+        \PY{n}{b} \PY{o}{=} \PY{n}{torch}\PY{o}{.}\PY{n}{from\PYZus{}numpy}\PY{p}{(}\PY{n}{a}\PY{p}{)}
+        \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{l+s+sd}{All the Tensors on the CPU except a CharTensor support converting to NumPy and back.}
+        \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        
+        \PY{n}{np}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{a=}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{a}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b=}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{b}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+a= [1. 1. 1. 1. 1.]
+b= tensor([1., 1., 1., 1., 1.], dtype=torch.float64)
+
+    \end{Verbatim}
+
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  CUDA Tensors
+\end{enumerate}
+
+此部分无法完成，因为此电脑没有可使用的Cuda Device
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{c+c1}{\PYZsh{} let us run this cell only if CUDA is available}
+        \PY{c+c1}{\PYZsh{} We will use ``torch.device`` objects to move tensors in and out of GPU}
+        \PY{k}{if} \PY{n}{torch}\PY{o}{.}\PY{n}{cuda}\PY{o}{.}\PY{n}{is\PYZus{}available}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{yes}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{n}{device} \PY{o}{=} \PY{n}{torch}\PY{o}{.}\PY{n}{device}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{cuda}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}          \PY{c+c1}{\PYZsh{} a CUDA device object}
+            \PY{n}{y} \PY{o}{=} \PY{n}{torch}\PY{o}{.}\PY{n}{ones\PYZus{}like}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{device}\PY{o}{=}\PY{n}{device}\PY{p}{)}  \PY{c+c1}{\PYZsh{} directly create a tensor on GPU}
+            \PY{n}{x} \PY{o}{=} \PY{n}{x}\PY{o}{.}\PY{n}{to}\PY{p}{(}\PY{n}{device}\PY{p}{)}                       \PY{c+c1}{\PYZsh{} or just use strings ``.to(\PYZdq{}cuda\PYZdq{})``}
+            \PY{n}{z} \PY{o}{=} \PY{n}{x} \PY{o}{+} \PY{n}{y}
+            \PY{n+nb}{print}\PY{p}{(}\PY{n}{z}\PY{p}{)}
+            \PY{n+nb}{print}\PY{p}{(}\PY{n}{z}\PY{o}{.}\PY{n}{to}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{cpu}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{torch}\PY{o}{.}\PY{n}{double}\PY{p}{)}\PY{p}{)}       \PY{c+c1}{\PYZsh{} ``.to`` can also change dtype together!}
+        \PY{k}{else}\PY{p}{:}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{No!}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            
+        \PY{c+c1}{\PYZsh{} ![jupyter](https://pytorch.org/tutorials/\PYZus{}images/mnist.png)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+No!
+
+    \end{Verbatim}
+
+    \subsubsection{Neural Networks}\label{neural-networks}
+
+Neural networks can be constructed using the torch.nn package.
+
+Now that you had a glimpse of 'autograd', 'nn' depends on 'autograd' to
+define models and differentiate them. An nn.Module contains layers, and
+a method forward(input) that returns the 'output'.
+
+For example, look at this network that classifiers digit images in
+https://pytorch.org/tutorials/\_images/mnist.png, including Input,
+Convolution, Subsampling, Convolution, Subsampling, Full connection.
+
+It is a simple feed-forward network. It takes the input, feeds it
+through several layers one after the other, and then finally gives the
+output.
+
+A typical training procedure for a neural network is as follows:
+
+\begin{verbatim}
++ Define the neural network that has some learnable parameters(or weights)
++ Iterate over a dataset of inputs
++ Process input through the network
++ Compute the loss
++ Propagate gradients back into the network's parameters
++ Update the weights of the network, typically using a simple update rule:
+\end{verbatim}
+
+\[weight = weight - learning\_rate * gradient\]
+
+    \paragraph{Define The Network}\label{define-the-network}
+
+Let's define the network
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{k+kn}{import} \PY{n+nn}{torch}
+        \PY{k+kn}{import} \PY{n+nn}{torch}\PY{n+nn}{.}\PY{n+nn}{nn} \PY{k}{as} \PY{n+nn}{nn}
+        \PY{k+kn}{import} \PY{n+nn}{torch}\PY{n+nn}{.}\PY{n+nn}{nn}\PY{n+nn}{.}\PY{n+nn}{functional} \PY{k}{as} \PY{n+nn}{F}
+        
+        \PY{k}{class} \PY{n+nc}{Net}\PY{p}{(}\PY{n}{nn}\PY{o}{.}\PY{n}{Module}\PY{p}{)}\PY{p}{:}
+            
+            \PY{k}{def} \PY{n+nf}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+                \PY{n+nb}{super}\PY{p}{(}\PY{n}{Net}\PY{p}{,} \PY{n+nb+bp}{self}\PY{p}{)}\PY{o}{.}\PY{n+nf+fm}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{(}\PY{p}{)}
+                \PY{c+c1}{\PYZsh{} 1 input image channel; 6 output channel; 5*5 square convolution kernel}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{conv1} \PY{o}{=} \PY{n}{nn}\PY{o}{.}\PY{n}{Conv2d}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{conv2} \PY{o}{=} \PY{n}{nn}\PY{o}{.}\PY{n}{Conv2d}\PY{p}{(}\PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{16}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}
+                \PY{c+c1}{\PYZsh{} an affine operation: y = Wx + b}
+                \PY{c+c1}{\PYZsh{} 16*5*5: input size; 120: output size}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{fc1} \PY{o}{=} \PY{n}{nn}\PY{o}{.}\PY{n}{Linear}\PY{p}{(}\PY{l+m+mi}{16} \PY{o}{*} \PY{l+m+mi}{5} \PY{o}{*} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{120}\PY{p}{)}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{fc2} \PY{o}{=} \PY{n}{nn}\PY{o}{.}\PY{n}{Linear}\PY{p}{(}\PY{l+m+mi}{120}\PY{p}{,} \PY{l+m+mi}{84}\PY{p}{)}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{fc3} \PY{o}{=} \PY{n}{nn}\PY{o}{.}\PY{n}{Linear}\PY{p}{(}\PY{l+m+mi}{84}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}
+                
+            \PY{k}{def} \PY{n+nf}{forward}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{x}\PY{p}{)}\PY{p}{:}
+                \PY{c+c1}{\PYZsh{} Max pooling over a (2,2) window}
+                \PY{n}{x} \PY{o}{=} \PY{n}{F}\PY{o}{.}\PY{n}{max\PYZus{}pool2d}\PY{p}{(}\PY{n}{F}\PY{o}{.}\PY{n}{relu}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{conv1}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+                \PY{c+c1}{\PYZsh{} If the size is a square you can only specify a single number}
+                \PY{n}{x} \PY{o}{=} \PY{n}{F}\PY{o}{.}\PY{n}{max\PYZus{}pool2d}\PY{p}{(}\PY{n}{F}\PY{o}{.}\PY{n}{relu}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{conv2}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}
+                \PY{c+c1}{\PYZsh{} 将x变为全连接。即bathsize * feature\PYZus{}numbers 的二维矩阵}
+                \PY{n}{x} \PY{o}{=} \PY{n}{x}\PY{o}{.}\PY{n}{view}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{num\PYZus{}flat\PYZus{}features}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}
+                \PY{n}{x} \PY{o}{=} \PY{n}{F}\PY{o}{.}\PY{n}{relu}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{fc1}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}
+                \PY{n}{x} \PY{o}{=} \PY{n}{F}\PY{o}{.}\PY{n}{relu}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{fc2}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}
+                \PY{c+c1}{\PYZsh{} 最后一层不需要激活}
+                \PY{n}{x} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{fc3}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+                \PY{k}{return} \PY{n}{x}
+                
+            \PY{k}{def} \PY{n+nf}{num\PYZus{}flat\PYZus{}features}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{x}\PY{p}{)}\PY{p}{:}
+                \PY{c+c1}{\PYZsh{} all dimension except the batch dimension}
+                \PY{c+c1}{\PYZsh{} 除了第一维之外的维度，例如x是4*5*6的torch张量，则size为torch.Size([5,6])}
+                \PY{n}{size} \PY{o}{=} \PY{n}{x}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]}
+                \PY{n}{num\PYZus{}features} \PY{o}{=} \PY{l+m+mi}{1}
+                \PY{k}{for} \PY{n}{s} \PY{o+ow}{in} \PY{n}{size}\PY{p}{:}
+                    \PY{n}{num\PYZus{}features} \PY{o}{*}\PY{o}{=} \PY{n}{s}
+                \PY{c+c1}{\PYZsh{} 返回是30；}
+                \PY{c+c1}{\PYZsh{} 若输入x:4*5*6*7}
+                \PY{c+c1}{\PYZsh{} 输出应为30*7=210}
+                \PY{c+c1}{\PYZsh{} 即所有的特征数量}
+                \PY{k}{return} \PY{n}{num\PYZus{}features}
+            
+        \PY{n}{net} \PY{o}{=} \PY{n}{Net}\PY{p}{(}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{net}\PY{p}{)}
+                    
+                
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Net(
+  (conv1): Conv2d(1, 6, kernel\_size=(5, 5), stride=(1, 1))
+  (conv2): Conv2d(6, 16, kernel\_size=(5, 5), stride=(1, 1))
+  (fc1): Linear(in\_features=400, out\_features=120, bias=True)
+  (fc2): Linear(in\_features=120, out\_features=84, bias=True)
+  (fc3): Linear(in\_features=84, out\_features=10, bias=True)
+)
+
+    \end{Verbatim}
+
+    You just have define the \emph{forward} function, and the
+\emph{backward} function (where gradients are computed) is automatically
+defined for you using \emph{autograd}. You can use any of the Tensor
+operation in the \emph{forward} function.
+
+The learnable parameters of a model are returned by
+\emph{net.parameters()}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{params} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n}{net}\PY{o}{.}\PY{n}{parameters}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{params}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{params}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}   \PY{c+c1}{\PYZsh{} conv1\PYZsq{}s weight}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{params}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{params}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{params}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{params}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{params}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{]}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{params}\PY{p}{[}\PY{l+m+mi}{6}\PY{p}{]}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{params}\PY{p}{[}\PY{l+m+mi}{7}\PY{p}{]}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{params}\PY{p}{[}\PY{l+m+mi}{8}\PY{p}{]}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{params}\PY{p}{[}\PY{l+m+mi}{9}\PY{p}{]}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+10
+torch.Size([6, 1, 5, 5])
+torch.Size([6])
+torch.Size([16, 6, 5, 5])
+torch.Size([16])
+torch.Size([120, 400])
+torch.Size([120])
+torch.Size([84, 120])
+torch.Size([84])
+torch.Size([10, 84])
+torch.Size([10])
+
+    \end{Verbatim}
+
+    Let's try a random \(32\times 32\) imput.
+
+Note: Expected input size to this net(LeNet) is \(32\times 32\). To use
+this net on MNIST dataset, please resize the images from the dataset to
+\(32\times 32\)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n+nb}{input} \PY{o}{=} \PY{n}{torch}\PY{o}{.}\PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{32}\PY{p}{,} \PY{l+m+mi}{32}\PY{p}{)}
+        \PY{n}{out} \PY{o}{=} \PY{n}{net}\PY{p}{(}\PY{n+nb}{input}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{out}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+tensor([[ 0.1585, -0.0513, -0.0055,  0.0208, -0.0938, -0.0586, -0.0479, -0.1212,
+         -0.1156,  0.0494]], grad\_fn=<ThAddmmBackward>)
+
+    \end{Verbatim}
+
+    Zeros the gradient buffers of all parameters and backprops with random
+gradients:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{net}\PY{o}{.}\PY{n}{zero\PYZus{}grad}\PY{p}{(}\PY{p}{)}
+         \PY{n}{out}\PY{o}{.}\PY{n}{backward}\PY{p}{(}\PY{n}{torch}\PY{o}{.}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \({\color{red}{Note}}\)
+
+\emph{torch.nn} only supports mini-batches. The entire \emph{torch.nn}
+package only supports inputs that are a mini-batch of samples, and not a
+single sample.
+
+For example, \emph{nn.conv2d} will take in a 4D Tensor of
+\(nSamples\times nChannels \times Height \times Width\).
+
+If you have a single sample, just use \emph{input.unsqueeze(0)} to add a
+fake batch dimension.(注: squeeze: 挤, 榨, 捏)
+
+Before proceeding further, let's recap all the classes you've seen so
+far.
+
+\({\color{blue}{Recap:}}\)
+
+\begin{itemize}
+\tightlist
+\item
+  torch.Tensor -\/-\/-\/- A multi-dimensional array with support for
+  autograd operations like backward(). Also holds the gradient w.r.t.
+  the tensor.
+\item
+  nn.Module -\/-\/-\/- Neural network module. Convenient way of
+  encapsulating(总结，囊括) parameters, with helpers for moving them to
+  GPU, exporting loading, etc.
+\item
+  nn.Parameter -\/-\/-\/- A kind of Tensor, that is automatically
+  registered as a parameter when assigned as an attribute to a Module.
+\item
+  autograd.Function -\/- Implements forward and backward definitions of
+  an autograd operation. Every Tensor operation, creates at least a
+  single Function node, that connects to functions that created a Tensor
+  and encodes its history.
+\end{itemize}
+
+注 + w.r.t-\/-with regard to; with reference to; with respect to,
+about的意思，即关于blabla
+
+\({\color{blue}{At this point, we covered:}}\)
+
+\begin{itemize}
+\tightlist
+\item
+  Defining a neural network
+\item
+  Processing inputs and calling backward
+\end{itemize}
+
+\({\color{blue}{Still Left:}}\)
+
+\begin{itemize}
+\tightlist
+\item
+  Computing the loss
+\item
+  Updating the weights of the network
+\end{itemize}
+
+    \paragraph{Loss Function}\label{loss-function}
+
+A loss function takes the( output, target) pair of inputs, and computes
+a value that estimates how far away the output is from the target.
+
+There are several different \(\color{red}{loss\; function}\) under teh
+\emph{nn.package}. A simple loss is: \emph{nn.MSELoss}, which computes
+the mean-squared error between the input and the target.
+
+Take an example:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{output} \PY{o}{=} \PY{n}{net}\PY{p}{(}\PY{n+nb}{input}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} a dummy target, for example}
+         \PY{c+c1}{\PYZsh{} 注：dummy: 仿制品。挂名代表，傀儡}
+         \PY{n}{target} \PY{o}{=} \PY{n}{torch}\PY{o}{.}\PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} make it the same shape as output}
+         \PY{n}{target} \PY{o}{=} \PY{n}{target}\PY{o}{.}\PY{n}{view}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{criterion} \PY{o}{=} \PY{n}{nn}\PY{o}{.}\PY{n}{MSELoss}\PY{p}{(}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} 注：criterion 规范，标准，准则}
+         
+         \PY{n}{loss} \PY{o}{=} \PY{n}{criterion}\PY{p}{(}\PY{n}{output}\PY{p}{,} \PY{n}{target}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{loss}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+tensor(1.5350, grad\_fn=<MseLossBackward>)
+
+    \end{Verbatim}
+
+    Now, if you follow \emph{loss} in the backward direction, using its
+\emph{.grad\_fn} attribute, you will see a graph of computations that
+looks like this
+
+\begin{verbatim}
+input -> conv2d -> relu -> maxpool2d -> conv2d -> relu -> maxpool2d
+
+      -> view -> linear -> relu -> linear -> relu -> linear
+      -> MSELoss
+      -> loss
+\end{verbatim}
+
+So, when we call \emph{loss.backward()}， the whole graph is
+differentiated w.r.t the loss, and all Tensors in the graph that has
+\emph{requires\_grad = True} will have their \emph{.grad} Tensor
+accumulated with the gradient.
+
+For illustration, let us follow a few steps backward:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{loss}\PY{o}{.}\PY{n}{grad\PYZus{}fn}\PY{p}{)}           \PY{c+c1}{\PYZsh{}MSELoss}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{loss}\PY{o}{.}\PY{n}{grad\PYZus{}fn}\PY{o}{.}\PY{n}{next\PYZus{}functions}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}  \PY{c+c1}{\PYZsh{} Linear}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{loss}\PY{o}{.}\PY{n}{grad\PYZus{}fn}\PY{o}{.}\PY{n}{next\PYZus{}functions}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{next\PYZus{}functions}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}  \PY{c+c1}{\PYZsh{} ReLU}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+<MseLossBackward object at 0x000002511A5F48D0>
+<ThAddmmBackward object at 0x000002511A5F4C50>
+<ExpandBackward object at 0x000002511A5F48D0>
+
+    \end{Verbatim}
+
+    \paragraph{Backprop}\label{backprop}
+
+To backpropagate the error all we have to do is to
+\emph{loss.backward()}. You need to clear the existing gradients though,
+else gradients will be accumulated to existing gradients.
+
+Now we shall call \emph{loss.backward()}, and have a look at conv1's
+bias gradients before and after the backward.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{c+c1}{\PYZsh{} zeros the gradient buffers of all parameters}
+         \PY{n}{net}\PY{o}{.}\PY{n}{zero\PYZus{}grad}\PY{p}{(}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{conv1.bias.grad before backward}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{net}\PY{o}{.}\PY{n}{conv1}\PY{o}{.}\PY{n}{bias}\PY{o}{.}\PY{n}{grad}\PY{p}{)}
+         
+         \PY{n}{loss}\PY{o}{.}\PY{n}{backward}\PY{p}{(}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{conv1.bias.grad after backward}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{net}\PY{o}{.}\PY{n}{conv1}\PY{o}{.}\PY{n}{bias}\PY{o}{.}\PY{n}{grad}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+conv1.bias.grad before backward
+tensor([0., 0., 0., 0., 0., 0.])
+conv1.bias.grad after backward
+tensor([-0.0011, -0.0055, -0.0124,  0.0115,  0.0161, -0.0073])
+
+    \end{Verbatim}
+
+    Now, we have seen how to use loss functions.
+
+\(\textbf{Read Later}\):
+
+The neural network package contains various modules and loss functions
+that form the building blocks of deep neural networks. A full list with
+documentation is here.
+
+\(\textbf{The only thing left to learn is:}\)
+
+\begin{itemize}
+\tightlist
+\item
+  Updating the weights of the network
+\end{itemize}
+
+    \paragraph{Update The Weights}\label{update-the-weights}
+
+The simplest update rule used in practice is the Stochastic Gradient
+Descent(SGD)
+
+\[weight = weight - learning\_rate \times gradient\]
+
+We can implement this using Python code:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{learning\PYZus{}rate} \PY{o}{=} \PY{l+m+mf}{0.01}
+         \PY{k}{for} \PY{n}{f} \PY{o+ow}{in} \PY{n}{net}\PY{o}{.}\PY{n}{parameters}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+             \PY{n}{f}\PY{o}{.}\PY{n}{data}\PY{o}{.}\PY{n}{sub\PYZus{}}\PY{p}{(}\PY{n}{f}\PY{o}{.}\PY{n}{grad}\PY{o}{.}\PY{n}{data}\PY{o}{*}\PY{n}{learning\PYZus{}rate}\PY{p}{)}
+             
+\end{Verbatim}
+
+
+    However, as you use neural networks, you want to use various update
+rules such as SGD, Neterov-SGD, Adam, RMSProp, etc. To enable this, we
+built a small package: \emph{torch.optim} that implements all these
+method. Using it is very simple:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{k+kn}{import} \PY{n+nn}{torch}\PY{n+nn}{.}\PY{n+nn}{optim} \PY{k}{as} \PY{n+nn}{optim}
+         
+         \PY{c+c1}{\PYZsh{} creat your optimizer}
+         \PY{n}{optimizer} \PY{o}{=} \PY{n}{optim}\PY{o}{.}\PY{n}{SGD}\PY{p}{(}\PY{n}{net}\PY{o}{.}\PY{n}{parameters}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{lr}\PY{o}{=}\PY{l+m+mf}{0.01}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} in your training loop:}
+         \PY{n}{optimizer}\PY{o}{.}\PY{n}{zero\PYZus{}grad}\PY{p}{(}\PY{p}{)}  \PY{c+c1}{\PYZsh{} zro the gradient buffers}
+         \PY{n}{output} \PY{o}{=} \PY{n}{net}\PY{p}{(}\PY{n+nb}{input}\PY{p}{)}
+         \PY{n}{loss} \PY{o}{=} \PY{n}{criterion}\PY{p}{(}\PY{n}{output}\PY{p}{,} \PY{n}{target}\PY{p}{)}
+         \PY{n}{loss}\PY{o}{.}\PY{n}{backward}\PY{p}{(}\PY{p}{)}
+         \PY{n}{optimizer}\PY{o}{.}\PY{n}{step}\PY{p}{(}\PY{p}{)}   \PY{c+c1}{\PYZsh{} Does the update}
+\end{Verbatim}
+
+
+    \(\color{red}{NOTE}\)
+
+Observe how gradient buffers had to be manually set to zero using
+\emph{optimizer.zero\_grad()}. This is because gradients are accumulated
+as explained in \(\color{red}{Backprop}\) section.
+
+    \subsubsection{Training A Classifier}\label{training-a-classifier}
+
+This is it. You have seen how to define neural networks, compute loss
+and make updates to the weights of the network.
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
